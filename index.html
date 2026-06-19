@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FBEAD2">
+<meta name="description" content="Tapas y más Alicante — Tapas a 1,60€, bebidas y más. Carta digital.">
+<title>Tapas y más · Alicante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Lato:wght@300;400;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBEAD2; --cream-2:#FFF5E5; --paper:#FFFBF4;
+  --terra:#C0392B; --terra-d:#992c20;
+  --navy:#23265b; --ink:#2c2520; --muted:#7a6f63;
+  --oliva:#3E7C4F; --azafran:#E8A93C;
+  --tile-blue:#a5bae0; --tile-gold:#f6ce2b; --tile-orange:#e47f2a;
+  --flag-r:#AA151B; --flag-y:#F1BF00;
+  --line:rgba(44,37,32,.12);
+  --shadow:0 10px 30px rgba(44,37,32,.10);
+  --r:16px;
+  --max:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden;padding-bottom:120px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ---------- HEADER ---------- */
+.topbar{position:relative;background:var(--cream-2);border-bottom:1px solid var(--line);overflow:hidden}
+.az-corner{position:absolute;width:78px;height:78px;opacity:.9;pointer-events:none}
+.az-corner.tl{top:-6px;left:-6px}
+.az-corner.tr{top:-6px;right:-6px;transform:scaleX(-1)}
+.topbar-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px 18px 22px;gap:6px}
+.lang{position:absolute;top:16px;right:16px;display:flex;border:1.5px solid var(--terra);border-radius:999px;overflow:hidden;background:var(--paper)}
+.lang button{padding:6px 14px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--terra)}
+.lang button.on{background:var(--terra);color:#fff}
+.brand-logo{height:96px;width:auto;object-fit:contain;margin-bottom:2px}
+.brand-name{font-weight:800;font-size:clamp(1.8rem,6vw,2.7rem);color:var(--terra);letter-spacing:.5px}
+.brand-name .y{color:var(--oliva)}
+.brand-sub{font-family:'Caveat',cursive;font-size:clamp(1.2rem,4vw,1.6rem);color:var(--navy)}
+.brand-tag{font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.flag-line{height:5px;width:100%;background:linear-gradient(var(--flag-r) 0 28%,var(--flag-y) 28% 72%,var(--flag-r) 72% 100%)}
+
+/* azulejo ruban */
+.ruban{height:42px;width:100%;display:block}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 4px 18px rgba(44,37,32,.06)}
+.nav-row{display:flex;gap:8px;overflow-x:auto;padding:11px 18px;scrollbar-width:none;max-width:var(--max);margin:0 auto}
+.nav-row::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:700;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);transition:all .25s ease;white-space:nowrap}
+.tab:hover{border-color:var(--terra)}
+.tab.on{background:var(--terra);color:#fff;border-color:var(--terra);box-shadow:0 4px 14px rgba(192,57,43,.3)}
+
+/* ---------- SECTIONS ---------- */
+.cat{display:none}
+.cat.on{display:block;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.banner{position:relative;height:230px;border-radius:0 0 var(--r) var(--r);overflow:hidden;background:var(--navy) center/cover no-repeat;margin-bottom:6px}
+.banner.noimg{background:linear-gradient(135deg,var(--cream-2),#f3dcbd)}
+.banner-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,38,91,.05) 0%,rgba(44,37,32,.62) 100%)}
+.banner-head{position:absolute;left:0;right:0;bottom:0;padding:22px 22px;display:flex;align-items:center;gap:12px}
+.banner.noimg .banner-head{color:var(--terra)}
+.banner-head h2{color:#fff;font-size:clamp(1.6rem,5vw,2.3rem);font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.banner.noimg .banner-head h2{color:var(--terra);text-shadow:none}
+.flag-tag{flex:0 0 auto;width:34px;height:22px;border-radius:4px;background:linear-gradient(var(--flag-r) 0 28%,var(--flag-y) 28% 72%,var(--flag-r) 72% 100%);box-shadow:0 2px 8px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.5)}
+
+.note{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--azafran);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;margin:16px 0;font-size:.95rem;color:var(--muted)}
+.note b{color:var(--terra)}
+
+.group-title{font-size:1.15rem;font-weight:700;color:var(--navy);margin:26px 0 4px;display:flex;align-items:center;gap:10px}
+.group-title::before{content:"";width:18px;height:2px;background:var(--azafran)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:14px 0}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;opacity:0;transform:translateY(16px)}
+.card.in{opacity:1;transform:none}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(192,57,43,.35)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card-top h4{font-size:1.12rem;font-weight:600;color:var(--ink)}
+.price{flex:0 0 auto;font-family:'Playfair Display',serif;font-weight:700;font-size:1.02rem;color:#fff;background:var(--terra);padding:4px 12px;border-radius:999px;white-space:nowrap}
+.card.info .price{background:var(--oliva)}
+.desc{font-size:.9rem;color:var(--muted);margin-top:6px}
+.card-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.stepper{display:flex;align-items:center;background:var(--cream-2);border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
+.step{width:38px;height:38px;font-size:1.25rem;font-weight:700;color:var(--terra);transition:background .2s}
+.step:hover{background:rgba(192,57,43,.12)}
+.qty{min-width:30px;text-align:center;font-weight:700;font-size:1rem}
+.add{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:999px;background:var(--oliva);color:#fff;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s,background .2s}
+.add:hover{background:#34693f;transform:scale(1.04);box-shadow:0 6px 16px rgba(62,124,79,.35)}
+.add svg{width:16px;height:16px;fill:currentColor}
+.card.info{background:var(--cream-2)}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--navy);color:#fff;border-radius:var(--r);padding:30px 22px;margin:34px 0}
+.contact h3{text-align:center;color:#fff;font-size:1.5rem;margin-bottom:20px}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.ci{display:flex;gap:12px;align-items:flex-start;color:#fff;text-decoration:none;background:rgba(255,255,255,.07);padding:14px 16px;border-radius:12px;transition:background .25s,transform .25s}
+.ci:hover{background:rgba(255,255,255,.14);transform:translateY(-3px)}
+.ci svg{width:24px;height:24px;fill:var(--tile-gold);flex:0 0 auto;margin-top:2px}
+.ci .ci-t{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tile-gold);font-weight:700}
+.ci .ci-v{font-size:.98rem}
+
+/* review + social */
+.review-wrap{text-align:center;margin:26px 0 8px}
+.review{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#3c4043;padding:15px 28px;border-radius:999px;font-weight:700;font-size:1.02rem;box-shadow:var(--shadow);border:2px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s;text-decoration:none}
+.review:hover{transform:translateY(-3px);border-color:var(--oliva);box-shadow:0 12px 28px rgba(44,37,32,.18)}
+.review .g{font-weight:800;font-size:1.15rem;letter-spacing:-.5px}
+.review .g b:nth-child(1){color:#4285F4}.review .g b:nth-child(2){color:#EA4335}.review .g b:nth-child(3){color:#FBBC05}.review .g b:nth-child(4){color:#4285F4}.review .g b:nth-child(5){color:#34A853}.review .g b:nth-child(6){color:#EA4335}
+.stars{color:var(--azafran);letter-spacing:2px;font-size:1.1rem}
+.social{display:flex;justify-content:center;gap:16px;margin:22px 0}
+.social a{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--paper);border:1.5px solid var(--line);transition:transform .25s,background .25s,border-color .25s}
+.social a:hover{transform:translateY(-4px) scale(1.05);background:var(--terra);border-color:var(--terra)}
+.social a:hover svg{fill:#fff}
+.social svg{width:24px;height:24px;fill:var(--navy);transition:fill .25s}
+
+footer{text-align:center;color:var(--muted);font-size:.88rem;padding:18px 0 6px}
+footer .hl{color:var(--terra);font-weight:700;font-family:'Playfair Display',serif}
+footer .sig{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--navy)}
+
+/* ---------- FLOATING CART ---------- */
+.fab{position:fixed;bottom:20px;right:20px;z-index:80;display:flex;align-items:center;gap:10px;background:var(--terra);color:#fff;padding:13px 20px 13px 16px;border-radius:999px;box-shadow:0 8px 26px rgba(192,57,43,.42);transition:transform .25s}
+.fab:hover{transform:scale(1.05)}
+.fab.pulse{animation:pulse .4s ease}
+@keyframes pulse{0%{transform:scale(1)}40%{transform:scale(1.16)}100%{transform:scale(1)}}
+.fab svg{width:26px;height:26px;fill:#fff}
+.fab .fab-count{position:absolute;top:-6px;left:-6px;background:var(--oliva);color:#fff;min-width:24px;height:24px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;padding:0 6px;border:2px solid var(--cream)}
+.fab .fab-total{font-weight:700;font-size:1.02rem;font-family:'Playfair Display',serif}
+
+/* ---------- CART MODAL ---------- */
+.overlay{position:fixed;inset:0;z-index:90;background:rgba(35,38,91,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex;animation:fade .25s ease}
+@media(min-width:640px){.overlay{align-items:center}}
+.sheet{background:var(--cream);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:22px;box-shadow:0 -10px 40px rgba(0,0,0,.3)}
+@media(min-width:640px){.sheet{border-radius:20px}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:16px}
+.sheet-head h3{color:var(--terra);font-size:1.5rem}
+.x{width:38px;height:38px;border-radius:50%;font-size:1.5rem;color:var(--ink);display:flex;align-items:center;justify-content:center;background:var(--paper);transition:transform .25s,color .25s}
+.x:hover{color:var(--terra);transform:rotate(90deg)}
+.citem{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.citem-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.citem-name{font-weight:700}
+.citem-line{font-weight:700;font-family:'Playfair Display',serif;color:var(--terra)}
+.citem-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.rm{display:flex;align-items:center;gap:6px;color:var(--terra-d);font-size:.85rem;font-weight:700}
+.rm svg{width:15px;height:15px;fill:currentColor}
+.empty{text-align:center;padding:40px 10px;color:var(--muted)}
+.empty svg{width:54px;height:54px;fill:var(--line);margin-bottom:12px}
+.totbox{background:var(--terra);color:#fff;border-radius:14px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+.totbox .tl{font-size:1rem;opacity:.9}
+.totbox .tv{font-family:'Playfair Display',serif;font-weight:800;font-size:1.7rem}
+.ordmeta{font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:14px}
+.acts{display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px;border-radius:12px;font-weight:700;font-size:1.02rem;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{filter:brightness(1.06)}
+.btn-cp{background:var(--paper);color:var(--ink);border:1.5px solid var(--oliva)}
+
+/* ---------- TOAST ---------- */
+.toast{position:fixed;left:50%;bottom:108px;z-index:120;transform:translateX(-50%) translateY(24px);background:var(--navy);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--shadow)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.card{opacity:1;transform:none}}
+:focus-visible{outline:3px solid var(--azafran);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="azulejo" viewBox="0 0 100 100">
+    <path d="M0,16 A16,16 0 0 1 16,0 L0,0 Z" fill="#a5bae0"/>
+    <path d="M84,0 A16,16 0 0 1 100,16 L100,0 Z" fill="#a5bae0"/>
+    <path d="M100,84 A16,16 0 0 1 84,100 L100,100 Z" fill="#a5bae0"/>
+    <path d="M16,100 A16,16 0 0 1 0,84 L0,100 Z" fill="#a5bae0"/>
+    <polygon points="50,11 89,50 50,89 11,50" fill="#23265b"/>
+    <rect x="21" y="21" width="58" height="58" fill="#23265b"/>
+    <circle cx="50" cy="50" r="19" fill="#f6ce2b"/>
+    <polygon points="50,31 69,50 50,69 31,50" fill="#e47f2a"/>
+    <rect x="37" y="37" width="26" height="26" fill="#e47f2a" transform="rotate(45 50 50)"/>
+    <circle cx="50" cy="50" r="6.5" fill="#FFF5E5"/>
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <svg class="az-corner tl"><use href="#azulejo"/></svg>
+  <svg class="az-corner tr"><use href="#azulejo"/></svg>
+  <div class="topbar-in">
+    <div class="lang">
+      <button id="es" class="on" onclick="setLang('es')">ES</button>
+      <button id="en" onclick="setLang('en')">EN</button>
+    </div>
+    <img class="brand-logo" src="https://photos.fife.usercontent.google.com/pw/AP1GczOFRWgpb2QbgHyGqD08tRjrjI2UUFLP5--EX3w1GGWHlGVbCi7_LQ=w1178-h911-s-no-gm?authuser=0" alt="Tapas y más Alicante">
+    <div class="brand-name">TAPAS <span class="y">Y</span> MÁS</div>
+    <div class="brand-sub">¡a la bandeja!</div>
+    <div class="brand-tag">Alicante · Since 2025</div>
+  </div>
+  <div class="flag-line"></div>
+</header>
+
+<svg class="ruban" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><pattern id="azuPat" width="42" height="42" patternUnits="userSpaceOnUse"><use href="#azulejo" width="42" height="42"/></pattern></defs>
+  <rect width="100%" height="42" fill="url(#azuPat)" opacity="0.85"/>
+</svg>
+
+<nav><div class="nav-row" id="navRow"></div></nav>
+
+<main class="wrap" id="sections"></main>
+
+<div class="wrap">
+  <div class="review-wrap">
+    <a class="review" href="https://search.google.com/local/writereview?placeid=ChIJ5Ws2EwA3Yg0R-vbQBHRvvs8" target="_blank" rel="noopener">
+      <span class="g"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></span>
+      <span><span class="stars">★★★★★</span><br><span data-i18n="review"></span></span>
+    </a>
+  </div>
+
+  <div class="social">
+    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0m0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84M12 16a4 4 0 114-4 4 4 0 01-4 4m6.4-11.85a1.44 1.44 0 101.44 1.44 1.44 1.44 0 00-1.44-1.44"/></svg></a>
+    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6 4.39 10.97 10.13 11.87v-8.4H7.08v-3.47h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.96H15.83c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.47h-2.8v8.4C19.61 23.04 24 18.07 24 12.07"/></svg></a>
+    <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.89-4.64V9.4a6.33 6.33 0 105.4 6.26V8.66a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-.63-.09z"/></svg></a>
+  </div>
+
+  <section class="contact">
+    <h3 data-i18n="visit"></h3>
+    <div class="contact-grid">
+      <a class="ci" href="https://www.google.com/maps/place/?q=place_id:ChIJ5Ws2EwA3Yg0R-vbQBHRvvs8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+        <div><div class="ci-t" data-i18n="address"></div><div class="ci-v">C. Rafael Altamira, 4<br>03002 Alicante</div></div>
+      </a>
+      <a class="ci" href="https://wa.me/34671377919" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <div><div class="ci-t" data-i18n="phone"></div><div class="ci-v">+34 671 37 79 19</div></div>
+      </a>
+      <div class="ci" style="cursor:default">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        <div><div class="ci-t" data-i18n="hours"></div><div class="ci-v" data-i18n="hoursVal"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><span class="hl">Tapas y más</span> · Alicante</p>
+    <p class="sig">¡buen provecho!</p>
+    <p style="margin-top:6px;font-size:.8rem" data-i18n="footnote"></p>
+  </footer>
+</div>
+
+<button class="fab" id="fab" onclick="toggleCart()" aria-label="Ver pedido">
+  <span class="fab-count" id="fabCount">0</span>
+  <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+  <span class="fab-total" id="fabTotal">0,00€</span>
+</button>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)toggleCart()">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-head"><h3 data-i18n="yourOrder"></h3><button class="x" onclick="toggleCart()" aria-label="Cerrar">×</button></div>
+    <div id="cartItems"></div>
+    <div class="totbox"><span class="tl" data-i18n="total"></span><span class="tv" id="cartTotal">0,00€</span></div>
+    <div class="ordmeta" id="ordMeta"></div>
+    <div class="acts">
+      <button class="btn btn-wa" onclick="sendWA()"><svg viewBox="0 0 24 24"><path d="M.06 24l1.69-6.16a11.87 11.87 0 01-1.6-5.95C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 018.41 3.49 11.82 11.82 0 013.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 01-5.69-1.45L.06 24zM6.6 20.13l.36.22a9.86 9.86 0 005.03 1.38 9.9 9.9 0 100-19.8 9.9 9.9 0 00-9.9 9.9c0 1.9.54 3.75 1.56 5.35l.24.38-1 3.65 3.7-.98z"/></svg><span data-i18n="sendWA"></span></button>
+      <button class="btn btn-cp" onclick="copyOrder()"><svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg><span data-i18n="copy"></span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ DATA ============ */
+const WA="34671377919";
+const ORDER=["tapas","desayuno","cervezas","cocteles","vinos","whisky","refrescos","cafes"];
+const MENU={
+ tapas:{nav:{es:"Tapas",en:"Tapas"},title:{es:"Tapas",en:"Tapas"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczNBqfcIYyOTE0r-bV3dXFFXvwCxee4ZGjo1JWr8RxnczmsG9TmCVg=w612-h346-no?authuser=0",
+   note:{es:"<b>Todas las tapas a 1,60€</b> · Nuestros camareros pasan con una bandeja ofreciéndolas.",en:"<b>All tapas €1.60</b> · Our waiters circulate with a tray of tapas."},
+   groups:[
+    {t:{es:"Calientes · Clásicos",en:"Hot · Classics"},items:[
+      {id:"tp1",es:"Croquetas (jamón, pollo, bacalao)",en:"Croquettes (ham, chicken, cod)",p:1.6},
+      {id:"tp2",es:"Calamares",en:"Calamari",p:1.6},
+      {id:"tp3",es:"Gambas",en:"Shrimps",p:1.6},
+      {id:"tp4",es:"Patatas bravas",en:"Patatas bravas",p:1.6},
+      {id:"tp5",es:"Salchicha",en:"Sausage",p:1.6},
+      {id:"tp6",es:"Alitas de pollo",en:"Chicken wings",p:1.6}]},
+    {t:{es:"Calientes · Otros",en:"Hot · More"},items:[
+      {id:"tp7",es:"Croquetas de cangrejo",en:"Crab croquettes",p:1.6},
+      {id:"tp8",es:"Pollo a la plancha",en:"Grilled chicken",p:1.6},
+      {id:"tp9",es:"Pincho de ternera",en:"Beef skewer",p:1.6},
+      {id:"tp10",es:"Arroz caldoso",en:"Brothy rice",p:1.6}]},
+    {t:{es:"Frías",en:"Cold"},items:[
+      {id:"tp11",es:"Ensalada rusa",en:"Russian salad",p:1.6},
+      {id:"tp12",es:"Tortilla de patatas",en:"Spanish omelette",p:1.6},
+      {id:"tp13",es:"Jamón serrano",en:"Serrano ham",p:1.6},
+      {id:"tp14",es:"Ensalada de cangrejo",en:"Crab salad",p:1.6},
+      {id:"tp15",es:"Queso con mermelada",en:"Cheese with jam",p:1.6}]}]},
+
+ desayuno:{nav:{es:"Desayuno",en:"Breakfast"},title:{es:"Desayuno & Tostadas",en:"Breakfast & Toasts"},
+   banner:null,
+   items:[
+     {id:"dy1",es:"Desayuno clásico",en:"Classic breakfast",p:3.0,d:{es:"Café con leche + zumo de naranja + media tostada (aceite, tomate o mantequilla)",en:"Coffee with milk + orange juice + half toast (oil, tomato or butter)"}},
+     {id:"dy2",es:"Media tostada de tomate con atún",en:"Half toast, tomato & tuna",p:3.0},
+     {id:"dy3",es:"Media tostada de tomate y aceite",en:"Half toast, tomato & oil",p:2.0},
+     {id:"dy4",es:"Media tostada de aceite",en:"Half toast with oil",p:1.5},
+     {id:"dy5",es:"Media tostada de jamón serrano / York",en:"Half toast, serrano / York ham",p:2.5},
+     {id:"dy6",es:"Media tostada de queso",en:"Half toast with cheese",p:2.0},
+     {id:"dy7",es:"Media tostada de mantequilla y mermelada",en:"Half toast, butter & jam",p:1.5}]},
+
+ cervezas:{nav:{es:"Cervezas",en:"Beers"},title:{es:"Cervezas",en:"Beers"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczP3iJAIg_jLpARP0o7g-gimZW1lG_naIx26WdhgFVGeVs5wspLApw=w1632-h911-s-no-gm?authuser=0",
+   items:[
+     {id:"cv1",es:"Caña pequeña (con o sin alcohol)",en:"Small draft (with/without alcohol)",p:1.0},
+     {id:"cv2",es:"Caña copa 20cl",en:"Draft glass 20cl",p:2.0},
+     {id:"cv3",es:"Quinto de Mahou",en:"Mahou (20cl)",p:2.5},
+     {id:"cv4",es:"Tercio de Heineken",en:"Heineken (33cl)",p:3.2},
+     {id:"cv5",es:"Tercio de Mahou",en:"Mahou (33cl)",p:3.2},
+     {id:"cv6",es:"Pinta 50cl",en:"Pint 50cl",p:4.5}]},
+
+ cocteles:{nav:{es:"Cócteles",en:"Cocktails"},title:{es:"Cócteles & Sangría",en:"Cocktails & Sangría"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczOtNTr_C3knp44SKMZkNcbRbHijuGuSWL6ZAlCJCIaQWkBOIlLUuQ=w1632-h911-s-no-gm?authuser=0",
+   items:[
+     {id:"co1",es:"Tinto de verano",en:"Tinto de verano",p:3.5},
+     {id:"co2",es:"Sangría",en:"Sangría",p:5.0},
+     {id:"co3",es:"Piña colada",en:"Piña colada",p:5.0},
+     {id:"co4",es:"Mojito",en:"Mojito",p:7.0},
+     {id:"co5",es:"Sex on the beach",en:"Sex on the beach",p:8.0},
+     {id:"co6",es:"Aperol Spritz",en:"Aperol Spritz",p:8.0},
+     {id:"co7",es:"Jarra de sangría",en:"Sangría jug",p:25.0}]},
+
+ vinos:{nav:{es:"Vinos",en:"Wines"},title:{es:"Vinos",en:"Wines"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczPe_Lh6JcxbKxq0nD2XZmFIr8uL7kvd-4cX5hya7nwmlpx8qnngEw=w1632-h911-s-no-gm?authuser=0",
+   items:[
+     {id:"vi1",es:"Copa de vino",en:"Glass of wine",p:3.2,d:{es:"Tinto (Rioja, Ribera del Duero) · Blanco (Verdejo seco / afrutado) · Rosado (Torrecilla)",en:"Red (Rioja, Ribera del Duero) · White (dry/fruity Verdejo) · Rosé (Torrecilla)"}},
+     {id:"vi2",es:"Cava Codorníu",en:"Codorníu cava",p:7.0},
+     {id:"vi3",es:"Botella de vino",en:"Bottle of wine",p:20.0}]},
+
+ whisky:{nav:{es:"Whisky",en:"Whisky"},title:{es:"Whisky",en:"Whisky"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczO8y-rCjUNo2UE0Xn703-uuKYOHF4qkzqnN6JBYwv6xmBpBUIaM9A=w1632-h911-s-no-gm?authuser=0",
+   items:[
+     {id:"wh1",es:"Johnnie Walker (Red)",en:"Johnnie Walker (Red)",p:7.0},
+     {id:"wh2",es:"Johnnie Walker Black",en:"Johnnie Walker Black",p:10.0},
+     {id:"wh3",es:"Jack Daniel's",en:"Jack Daniel's",p:8.0},
+     {id:"wh4",es:"Ballantine's",en:"Ballantine's",p:7.0},
+     {id:"wh5",es:"Jameson",en:"Jameson",p:7.0},
+     {id:"wh6",es:"J&B",en:"J&B",p:7.0},
+     {id:"wh7",es:"Chivas Regal",en:"Chivas Regal",p:10.0}]},
+
+ refrescos:{nav:{es:"Refrescos",en:"Soft drinks"},title:{es:"Refrescos & Zumos",en:"Soft drinks & Juices"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczML4Vh9ux6325tHmgSfXxQztaPHzd8AM9XzMLEySzFobLTZdB52IA=w1632-h911-s-no-gm?authuser=0",
+   items:[
+     {id:"rf1",es:"Agua",en:"Water",p:1.0},
+     {id:"rf2",es:"Agua con gas",en:"Sparkling water",p:2.5},
+     {id:"rf3",es:"Coca-Cola",en:"Coca-Cola",p:2.0},
+     {id:"rf4",es:"Coca-Cola Zero",en:"Coca-Cola Zero",p:2.0},
+     {id:"rf5",es:"Fanta limón",en:"Fanta lemon",p:2.0},
+     {id:"rf6",es:"Fanta naranja",en:"Fanta orange",p:2.0},
+     {id:"rf7",es:"Aquarius limón",en:"Aquarius lemon",p:2.3},
+     {id:"rf8",es:"Aquarius naranja",en:"Aquarius orange",p:2.3},
+     {id:"rf9",es:"Nestea",en:"Nestea",p:2.0},
+     {id:"rf10",es:"Bitter Kas",en:"Bitter Kas",p:2.0},
+     {id:"rf11",es:"Schweppes",en:"Schweppes",p:2.3},
+     {id:"rf12",es:"Zumo",en:"Juice",p:3.2,d:{es:"Naranja, piña, melocotón, tomate, manzana",en:"Orange, pineapple, peach, tomato, apple"}}]},
+
+ cafes:{nav:{es:"Cafés & Té",en:"Coffee & Tea"},title:{es:"Cafés, Té & Otros",en:"Coffee, Tea & More"},
+   banner:"https://photos.fife.usercontent.google.com/pw/AP1GczP1eax8fVXqY8O5zvtOmiN2PEhuBGjD6rb_r3tc6hTGY1infTCA2w=w1632-h911-s-no-gm?authuser=0",
+   groups:[
+    {t:{es:"Cafés",en:"Coffee"},items:[
+      {id:"cf1",es:"Café solo",en:"Espresso",p:1.3},
+      {id:"cf2",es:"Café americano",en:"Americano",p:1.5},
+      {id:"cf3",es:"Café cortado",en:"Cortado",p:1.5},
+      {id:"cf4",es:"Café con leche",en:"Coffee with milk",p:1.8},
+      {id:"cf5",es:"Cappuccino",en:"Cappuccino",p:2.0},
+      {id:"cf6",es:"Café vienés",en:"Viennese coffee",p:2.0},
+      {id:"cf7",es:"Café irlandés",en:"Irish coffee",p:1.5},
+      {id:"cf8",es:"Descafeinado",en:"Decaf",p:1.3}]},
+    {t:{es:"Té & Otros",en:"Tea & More"},items:[
+      {id:"te1",es:"Té (menta, negro, verde, rojo)",en:"Tea (mint, black, green, red)",p:1.3},
+      {id:"te2",es:"Manzanilla",en:"Chamomile",p:1.3},
+      {id:"te3",es:"Chocolate caliente",en:"Hot chocolate",p:1.8},
+      {id:"te4",es:"Cola Cao",en:"Cola Cao",p:2.0}]}]}
+};
+
+/* ============ I18N ============ */
+const T={
+ add:{es:"Añadir",en:"Add"},
+ added:{es:"Añadido al carrito ✓",en:"Added to cart ✓"},
+ removed:{es:"Producto eliminado",en:"Item removed"},
+ yourOrder:{es:"Tu pedido",en:"Your order"},
+ total:{es:"Total",en:"Total"},
+ sendWA:{es:"Enviar pedido por WhatsApp",en:"Send order via WhatsApp"},
+ copy:{es:"Copiar pedido",en:"Copy order"},
+ copied:{es:"Pedido copiado ✓",en:"Order copied ✓"},
+ emptyCart:{es:"Tu carrito está vacío",en:"Your cart is empty"},
+ emptyMsg:{es:"El carrito está vacío",en:"Cart is empty"},
+ review:{es:"Déjanos tu reseña en Google",en:"Leave us a Google review"},
+ visit:{es:"Ven a vernos",en:"Come visit us"},
+ address:{es:"Dirección",en:"Address"},
+ phone:{es:"Teléfono",en:"Phone"},
+ hours:{es:"Horario",en:"Opening hours"},
+ hoursVal:{es:"Lun, Mié–Dom: 9:30–00:00 · Mar: cerrado",en:"Mon, Wed–Sun: 9:30–00:00 · Tue: closed"},
+ footnote:{es:"Carta digital · Precios en euros, IVA incluido.",en:"Digital menu · Prices in euros, VAT included."},
+ orderNo:{es:"Nº de pedido",en:"Order no."}
+};
+let LANG="es";
+const t=k=>T[k][LANG];
+const eur=p=>p.toFixed(2).replace(".",",")+"€";
+
+/* ============ STATE ============ */
+let cart=[]; const IDX={};
+ORDER.forEach(k=>{const c=MENU[k];(c.items||[]).concat(...(c.groups||[]).map(g=>g.items)).forEach(it=>IDX[it.id]={...it,cat:k});});
+let orderNo=genOrder();
+
+/* ============ RENDER ============ */
+function cardHTML(it){
+  const d=it.d?`<p class="desc">${it.d[LANG]}</p>`:"";
+  return `<div class="card" data-rev>
+    <div class="card-top"><h4>${it[LANG]}</h4><span class="price">${eur(it.p)}</span></div>${d}
+    <div class="card-actions">
+      <div class="stepper" data-id="${it.id}">
+        <button class="step minus" aria-label="-">−</button><span class="qty">1</span><button class="step plus" aria-label="+">+</button>
+      </div>
+      <button class="add" data-id="${it.id}"><svg viewBox="0 0 24 24"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"/></svg>${t("add")}</button>
+    </div></div>`;
+}
+function listHTML(c){
+  if(c.groups) return c.groups.map(g=>`<div class="group-title">${g.t[LANG]}</div><div class="grid">${g.items.map(cardHTML).join("")}</div>`).join("");
+  return `<div class="grid">${c.items.map(cardHTML).join("")}</div>`;
+}
+function buildNav(){
+  navRow.innerHTML=ORDER.map((k,i)=>`<button class="tab${i===0?" on":""}" data-target="${k}">${MENU[k].nav[LANG]}</button>`).join("");
+}
+function buildSections(){
+  sections.innerHTML=ORDER.map((k,i)=>{
+    const c=MENU[k];
+    const ban=c.banner
+      ? `<div class="banner" style="background-image:url('${c.banner}')"><div class="banner-ov"></div><div class="banner-head"><span class="flag-tag"></span><h2>${c.title[LANG]}</h2></div></div>`
+      : `<div class="banner noimg"><div class="banner-head"><span class="flag-tag"></span><h2>${c.title[LANG]}</h2></div></div>`;
+    const note=c.note?`<div class="note">${c.note[LANG]}</div>`:"";
+    return `<section class="cat${i===0?" on":""}" id="sec-${k}">${ban}${note}${listHTML(c)}</section>`;
+  }).join("");
+  observeCards();
+}
+function render(){buildNav();buildSections();applyI18n();updateFab();}
+
+function applyI18n(){document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=t(e.dataset.i18n));document.documentElement.lang=LANG;}
+
+function setLang(l){LANG=l;es.classList.toggle("on",l==="es");en.classList.toggle("on",l==="en");
+  const active=document.querySelector(".tab.on")?.dataset.target||ORDER[0];
+  render();showCat(active,false);renderCart();}
+
+/* ============ NAV / TABS ============ */
+navRow.addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)showCat(b.dataset.target,true);});
+function showCat(k,scroll){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.target===k));
+  document.querySelectorAll(".cat").forEach(s=>s.classList.toggle("on",s.id==="sec-"+k));
+  if(scroll){const y=document.querySelector("nav").getBoundingClientRect().bottom+window.scrollY;
+    if(window.scrollY>y-70)window.scrollTo({top:y-66,behavior:"smooth"});}
+  observeCards();
+}
+
+/* ============ STEPPERS + ADD ============ */
+sections.addEventListener("click",e=>{
+  const s=e.target.closest(".step");
+  if(s){const box=s.closest(".stepper"),q=box.querySelector(".qty");let n=+q.textContent+(s.classList.contains("plus")?1:-1);q.textContent=Math.max(1,n);return;}
+  const a=e.target.closest(".add");
+  if(a){const id=a.dataset.id,box=a.closest(".card").querySelector(".stepper"),q=+box.querySelector(".qty").textContent;
+    addToCart(id,q);box.querySelector(".qty").textContent="1";pulse();toast(t("added"));}
+});
+function addToCart(id,q){const ex=cart.find(c=>c.id===id);if(ex)ex.q+=q;else cart.push({id,q});updateFab();}
+
+/* ============ CART ============ */
+function toggleCart(){overlay.classList.toggle("on");if(overlay.classList.contains("on"))renderCart();}
+function updateFab(){const n=cart.reduce((s,c)=>s+c.q,0),tot=cart.reduce((s,c)=>s+IDX[c.id].p*c.q,0);
+  fabCount.textContent=n;fabTotal.textContent=eur(tot);}
+function renderCart(){
+  if(!cart.length){cartItems.innerHTML=`<div class="empty"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49a1 1 0 00-.87-1.48H5.21l-.94-2H1z"/></svg><div>${t("emptyCart")}</div></div>`;
+    cartTotal.textContent="0,00€";ordMeta.textContent="";updateFab();return;}
+  let tot=0;
+  cartItems.innerHTML=cart.map(c=>{const it=IDX[c.id],line=it.p*c.q;tot+=line;
+    return `<div class="citem"><div class="citem-top"><span class="citem-name">${it[LANG]}</span><span class="citem-line">${eur(line)}</span></div>
+      <div class="citem-ctrl">
+        <button class="rm" onclick="rmItem('${c.id}')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>${LANG==="es"?"Quitar":"Remove"}</button>
+        <div class="stepper"><button class="step" onclick="chg('${c.id}',-1)">−</button><span class="qty">${c.q}</span><button class="step" onclick="chg('${c.id}',1)">+</button></div>
+      </div></div>`;}).join("");
+  cartTotal.textContent=eur(tot);
+  ordMeta.textContent=`${t("orderNo")}: ${orderNo} · ${new Date().toLocaleDateString(LANG==="es"?"es-ES":"en-GB")}`;
+  updateFab();
+}
+function rmItem(id){cart=cart.filter(c=>c.id!==id);toast(t("removed"));renderCart();}
+function chg(id,d){const c=cart.find(x=>x.id===id);if(!c)return;c.q+=d;if(c.q<=0)cart=cart.filter(x=>x.id!==id);renderCart();}
+
+/* ============ WHATSAPP / COPY ============ */
+function buildMsg(){
+  let m=`*TAPAS Y MÁS · ALICANTE*\n${t("orderNo")}: ${orderNo}\n${new Date().toLocaleDateString(LANG==="es"?"es-ES":"en-GB")} ${new Date().toLocaleTimeString(LANG==="es"?"es-ES":"en-GB",{hour:"2-digit",minute:"2-digit"})}\n————————————\n`;
+  let tot=0;
+  ORDER.forEach(k=>{const inCat=cart.filter(c=>IDX[c.id].cat===k);if(!inCat.length)return;
+    m+=`\n*${MENU[k].title[LANG]}*\n`;
+    inCat.forEach(c=>{const it=IDX[c.id],line=it.p*c.q;tot+=line;m+=`• ${it[LANG]} x${c.q} — ${eur(line)}\n`;});});
+  m+=`————————————\n*${t("total").toUpperCase()}: ${eur(tot)}*\n————————————\n\n`;
+  m+=LANG==="es"?"📍 Mesa / Para llevar:\n📝 Notas:":"📍 Table / Takeaway:\n📝 Notes:";
+  return m;
+}
+function sendWA(){if(!cart.length){toast(t("emptyMsg"));return;}
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(buildMsg())}`,"_blank");}
+function copyOrder(){if(!cart.length){toast(t("emptyMsg"));return;}
+  navigator.clipboard.writeText(buildMsg()).then(()=>toast(t("copied"))).catch(()=>toast("Error"));}
+
+/* ============ HELPERS ============ */
+function genOrder(){const d=new Date();return "TM-"+(""+d.getFullYear()).slice(-2)+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();}
+function pulse(){fab.classList.add("pulse");setTimeout(()=>fab.classList.remove("pulse"),420);}
+let toastT;function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),2200);}
+
+/* ============ SCROLL REVEAL ============ */
+let io;
+function observeCards(){
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.querySelectorAll("[data-rev]").forEach(c=>c.classList.add("in"));return;}
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll(".cat.on [data-rev]").forEach(c=>io.observe(c));
+}
+
+/* ============ INIT ============ */
+render();
+</script>
+</body>
+</html>
