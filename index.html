@@ -28,24 +28,32 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15}
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-/* HEADER */
-.topbar{position:relative;background:var(--cream-2);border-bottom:1px solid var(--line);overflow:hidden}
-.az-corner{position:absolute;width:80px;height:80px;opacity:.9;pointer-events:none}
+/* HEADER + ruban espagnol en fond */
+.topbar{position:relative;background:var(--cream);border-bottom:1px solid var(--line);overflow:hidden}
+.az-corner{position:absolute;width:80px;height:80px;opacity:.85;pointer-events:none;z-index:1}
 .az-corner.tl{top:-6px;left:-6px}
 .az-corner.tr{top:-6px;right:-6px;transform:scaleX(-1)}
-.topbar-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px 18px 20px;gap:7px}
-.lang{display:flex;gap:8px;margin-bottom:4px}
-.langbtn{width:36px;height:36px;border-radius:50%;overflow:hidden;border:2px solid rgba(44,37,32,.2);opacity:.6;transition:all .25s ease;padding:0;box-shadow:0 1px 5px rgba(0,0,0,.18)}
-.langbtn svg{width:100%;height:100%;display:block}
-.langbtn.on{opacity:1;border-color:var(--terra);transform:scale(1.08)}
+.topbar-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:16px 18px 20px;gap:7px}
+.lang{display:flex;gap:16px;margin-bottom:4px}
+.langbtn{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.55;transition:opacity .25s ease;padding:0}
+.flagc{width:34px;height:34px;border-radius:50%;overflow:hidden;border:2px solid rgba(44,37,32,.25);box-shadow:0 1px 5px rgba(0,0,0,.2);transition:all .25s ease}
+.flagc svg{width:100%;height:100%;display:block}
+.langlbl{font-size:.66rem;font-weight:800;letter-spacing:.1em;color:var(--ink);text-shadow:0 1px 2px rgba(255,255,255,.75)}
+.langbtn.on{opacity:1}
+.langbtn.on .flagc{border-color:var(--terra);transform:scale(1.1)}
+.langbtn.on .langlbl{color:var(--terra-d)}
 .brand-logo{height:120px;width:auto;object-fit:contain}
-.brand-name{font-family:'Yeseva One',serif;font-size:clamp(2rem,7vw,3rem);color:var(--terra);letter-spacing:.5px;line-height:1}
-.brand-name .y{color:var(--oliva)}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:14px}
+.wing{width:96px;height:auto;flex:0 0 auto;pointer-events:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.12))}
+.wing.right{transform:scaleX(-1)}
+@media(max-width:480px){.wing{width:58px}.logo-row{gap:8px}}
+.brand-name{font-family:'Yeseva One',serif;font-size:clamp(2rem,7vw,3rem);color:var(--terra);letter-spacing:.5px;line-height:1;text-shadow:0 1px 3px rgba(255,245,229,.6)}
+.brand-name .y{color:#FFAA00}
 .brand-sub{font-family:'Caveat',cursive;font-size:clamp(1.2rem,4vw,1.7rem);color:var(--navy);margin-top:-2px}
 .brand-tag{font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .flag-line{height:5px;width:100%;background:linear-gradient(var(--flag-r) 0 28%,var(--flag-y) 28% 72%,var(--flag-r) 72% 100%)}
 
-/* RUBAN */
+/* RUBAN azulejo */
 .ruban{height:44px;width:100%;overflow:hidden;background:var(--cream-2);border-bottom:1px solid var(--line)}
 .ruban-track{display:flex;width:max-content;animation:drift 28s linear infinite}
 .tile{flex:0 0 44px;width:44px;height:44px}
@@ -85,17 +93,14 @@ nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-f
 .banner-head{position:absolute;left:0;right:0;bottom:0;padding:22px;display:flex;align-items:center}
 .banner-head h2{color:#fff;font-size:clamp(1.6rem,5vw,2.3rem);font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.4)}
 .banner.noimg .banner-head h2{color:var(--terra);text-shadow:none}
-
 .note{display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:16px auto;max-width:660px}
 .note-main{font-family:'Playfair Display',serif;font-weight:800;color:var(--terra);font-size:clamp(1.05rem,4.4vw,1.35rem);white-space:nowrap;display:flex;align-items:center;gap:8px}
 .note-main::before,.note-main::after{content:"";width:16px;height:2px;background:var(--azafran)}
 .note-sub{color:var(--muted);font-size:.92rem;line-height:1.4}
-
 .group-block{text-align:center;margin:30px 0 6px}
 .group-title{font-size:1.2rem;font-weight:700;color:var(--navy);margin-top:8px}
 .mini-ruban{display:block;width:100%;height:22px;opacity:.92;margin:12px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:14px 0}
-
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;opacity:0;transform:translateY(16px)}
 .card.in{opacity:1;transform:none}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(192,57,43,.35)}
@@ -104,7 +109,6 @@ nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-f
 .card.view{padding:18px 18px 16px}
 .card.view .card-top h4{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--navy)}
 .price{flex:0 0 auto;font-family:'Playfair Display',serif;font-weight:700;font-size:1.02rem;color:#fff;background:var(--terra);padding:4px 12px;border-radius:999px;white-space:nowrap}
-.card.info .price{background:var(--oliva)}
 .desc{font-size:.9rem;color:var(--muted);margin-top:6px}
 .card-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
 .stepper{display:flex;align-items:center;background:var(--cream-2);border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
@@ -114,22 +118,19 @@ nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-f
 .add{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:999px;background:var(--oliva);color:#fff;font-weight:700;font-size:.92rem;transition:transform .2s,box-shadow .2s,background .2s}
 .add:hover{background:#34693f;transform:scale(1.04);box-shadow:0 6px 16px rgba(62,124,79,.35)}
 .add svg{width:16px;height:16px;fill:currentColor}
-
-/* DECO CARDS */
+/* DECO STRIPS */
 .deco-strip{position:relative;width:100%;height:200px;border-radius:var(--r);overflow:hidden;cursor:zoom-in;border:2px solid var(--paper);box-shadow:0 6px 18px rgba(44,37,32,.12);opacity:0;transform:translateY(16px);margin:18px 0}
 .deco-strip.in{opacity:1;transform:none}
 .deco-strip img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .deco-strip:hover img{transform:scale(1.04)}
 .deco-zoom{position:absolute;bottom:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(35,38,91,.7);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;backdrop-filter:blur(2px)}
 @media(max-width:560px){.deco-strip{height:150px}}
-
 /* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(20,18,30,.92);display:none;align-items:center;justify-content:center;padding:20px}
 .lightbox.on{display:flex;animation:fade .25s ease}
 .lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:8px;cursor:zoom-in;transition:transform .3s ease}
 .lightbox img.zoomed{transform:scale(2);cursor:zoom-out}
 .lb-close{position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:1.6rem;display:flex;align-items:center;justify-content:center}
-
 /* CONTACT */
 .contact{background:var(--navy);color:#fff;border-radius:var(--r);padding:30px 22px;margin:34px 0}
 .contact h3{text-align:center;color:#fff;font-size:1.5rem;margin-bottom:20px}
@@ -139,7 +140,6 @@ nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-f
 .ci svg{width:24px;height:24px;fill:var(--azafran);flex:0 0 auto;margin-top:2px}
 .ci .ci-t{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--azafran);font-weight:700}
 .ci .ci-v{font-size:.98rem}
-
 .review-wrap{text-align:center;margin:26px 0 8px}
 .review{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#3c4043;padding:15px 28px;border-radius:999px;font-weight:700;font-size:1.02rem;box-shadow:var(--shadow);border:2px solid transparent;transition:transform .25s,border-color .25s,box-shadow .25s;text-decoration:none}
 .review:hover{transform:translateY(-3px);border-color:var(--oliva);box-shadow:0 12px 28px rgba(44,37,32,.18)}
@@ -151,12 +151,10 @@ nav{position:sticky;top:0;z-index:60;background:rgba(251,234,210,.96);backdrop-f
 .social .si:hover{transform:translateY(-4px) scale(1.05);background:var(--terra);border-color:var(--terra)}
 .social .si:hover svg{fill:#fff}
 .social svg{width:24px;height:24px;fill:var(--navy);transition:fill .25s}
-
 footer{text-align:center;color:var(--muted);font-size:.88rem;padding:18px 0 6px}
 footer .hl{color:var(--terra);font-weight:700;font-family:'Playfair Display',serif}
 footer .sig{font-family:'Caveat',cursive;font-size:1.3rem;color:var(--navy)}
-
-/* FAB + CART (order mode only) */
+/* FAB + CART */
 .fab{display:none;position:fixed;bottom:20px;right:20px;z-index:80;align-items:center;gap:10px;background:var(--terra);color:#fff;padding:13px 20px 13px 16px;border-radius:999px;box-shadow:0 8px 26px rgba(192,57,43,.42);transition:transform .25s}
 body.mode-order .fab{display:flex}
 .fab:hover{transform:scale(1.05)}
@@ -197,10 +195,8 @@ body.mode-order .fab{display:flex}
 .btn svg{width:20px;height:20px;fill:currentColor}
 .btn-wa{background:#25D366;color:#fff}
 .btn-cp{background:var(--paper);color:var(--ink);border:1.5px solid var(--oliva)}
-
 .toast{position:fixed;left:50%;bottom:108px;z-index:120;transform:translateX(-50%) translateY(24px);background:var(--navy);color:#fff;padding:13px 24px;border-radius:999px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:var(--shadow)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.card,.deco-strip{opacity:1;transform:none}}
 :focus-visible{outline:3px solid var(--azafran);outline-offset:2px}
 </style>
@@ -214,14 +210,15 @@ body.mode-order .fab{display:flex}
   <svg class="az-corner tr"><use href="#azulejo"/></svg>
   <div class="topbar-in">
     <div class="lang">
-      <button class="langbtn on" data-lang="es" aria-label="Español">
-        <svg viewBox="0 0 6 4" preserveAspectRatio="xMidYMid slice"><rect width="6" height="4" fill="#AA151B"/><rect y="1" width="6" height="2" fill="#F1BF00"/></svg>
-      </button>
-      <button class="langbtn" data-lang="en" aria-label="English">
-        <svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" stroke="#C8102E" stroke-width="3.5"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></svg>
-      </button>
+      <button class="langbtn on" data-lang="es" aria-label="Español"><span class="flagc"><svg viewBox="0 0 6 4" preserveAspectRatio="xMidYMid slice"><rect width="6" height="4" fill="#AA151B"/><rect y="1" width="6" height="2" fill="#F1BF00"/></svg></span><span class="langlbl">ES</span></button>
+      <button class="langbtn" data-lang="en" aria-label="English"><span class="flagc"><svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" stroke="#C8102E" stroke-width="3.5"/><path d="M30,0V30M0,15H60" stroke="#fff" stroke-width="10"/><path d="M30,0V30M0,15H60" stroke="#C8102E" stroke-width="6"/></svg></span><span class="langlbl">EN</span></button>
+      <button class="langbtn" data-lang="fr" aria-label="Français"><span class="flagc"><svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice"><rect width="3" height="2" fill="#fff"/><rect width="1" height="2" fill="#0055A4"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></span><span class="langlbl">FR</span></button>
     </div>
-    <img class="brand-logo" src="https://lh3.googleusercontent.com/pw/AP1GczPhxRCbR4jNiSF87q4gWPQLT-jx10uvUy3s5Q5KmlPGkbKsHX8ME1W4EuxxvYFtFNpnWx1LFtVOaSFRK2Qv2GH_n6G2kWQ63uPnZSwqqhPi-5467pXYsiIDgcu142ROz4KqpWQot91_7NJ1XqXtMQ=w1178-h911-s-no-gm?authuser=0" alt="Tapas y más Alicante">
+    <div class="logo-row">
+      <img class="wing left" src="https://lh3.googleusercontent.com/pw/AP1GczOf477RaItRZa_IV4_y-rfoDgp2BH0OeSxJrHkOSzyrq0FFPIL25UcgnNbtVXZpZ-1b0vmtkeju63y__EFqlabNOv3eh163ktNwGlj9rJk7WLcO4Loqjl9Ib1MYW__wiBJhtm_5-Dhk9b90JCkSveU=w1228-h750-s-no-gm?authuser=0" alt="">
+      <img class="brand-logo" src="https://lh3.googleusercontent.com/pw/AP1GczMnx4ll4uV-rAA3vzI6K9lLWQl2u7BnzsWy5qLS9dRA6SJIfKsgWS3K9dkDsbs2Y4fMkg9Fz2isbGkkfROab5STEvfr58K2IyeS3Dm7uUZBgyp8tc2b45_0DuoPWTMPTc-dxSOul0YkwYINrAIEKF4=w1124-h869-s-no-gm?authuser=0" alt="Tapas y más Alicante">
+      <img class="wing right" src="https://lh3.googleusercontent.com/pw/AP1GczOf477RaItRZa_IV4_y-rfoDgp2BH0OeSxJrHkOSzyrq0FFPIL25UcgnNbtVXZpZ-1b0vmtkeju63y__EFqlabNOv3eh163ktNwGlj9rJk7WLcO4Loqjl9Ib1MYW__wiBJhtm_5-Dhk9b90JCkSveU=w1228-h750-s-no-gm?authuser=0" alt="">
+    </div>
     <div class="brand-name">Tapas <span class="y">y</span> Más</div>
     <div class="brand-sub">¡a la bandeja!</div>
     <div class="brand-tag">Alicante</div>
@@ -253,13 +250,11 @@ body.mode-order .fab{display:flex}
       <span><span class="stars">★★★★★</span><br><span data-i18n="review"></span></span>
     </a>
   </div>
-
   <div class="social">
     <span class="si" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0m0 5.84A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84M12 16a4 4 0 114-4 4 4 0 01-4 4m6.4-11.85a1.44 1.44 0 101.44 1.44 1.44 1.44 0 00-1.44-1.44"/></svg></span>
     <span class="si" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6 4.39 10.97 10.13 11.87v-8.4H7.08v-3.47h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.96H15.83c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.47h-2.8v8.4C19.61 23.04 24 18.07 24 12.07"/></svg></span>
     <span class="si" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.89-4.64V9.4a6.33 6.33 0 105.4 6.26V8.66a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-.63-.09z"/></svg></span>
   </div>
-
   <section class="contact">
     <h3 data-i18n="visit"></h3>
     <div class="contact-grid">
@@ -277,7 +272,6 @@ body.mode-order .fab{display:flex}
       </div>
     </div>
   </section>
-
   <footer>
     <p><span class="hl">Tapas y más</span> · Alicante</p>
     <p class="sig">¡buen provecho!</p>
@@ -313,7 +307,6 @@ body.mode-order .fab{display:flex}
 
 <script>
 const WA="34671377919";
-const LOGO="https://lh3.googleusercontent.com/pw/AP1GczPhxRCbR4jNiSF87q4gWPQLT-jx10uvUy3s5Q5KmlPGkbKsHX8ME1W4EuxxvYFtFNpnWx1LFtVOaSFRK2Qv2GH_n6G2kWQ63uPnZSwqqhPi-5467pXYsiIDgcu142ROz4KqpWQot91_7NJ1XqXtMQ=w1178-h911-s-no-gm?authuser=0";
 const ORDER=["tapas","desayuno","cervezas","cocteles","vinos","whisky","refrescos","cafes"];
 const D="https://lh3.googleusercontent.com/pw/AP1Gcz";
 function dq(t){return D+t+"?authuser=0";}
@@ -333,7 +326,6 @@ const DECO=[
 "N9mhmBaumUnchlnBVkGr7qf9eBbSFLZSV5TbOcdZcedFEhduqFHNSUGMN_iHOzasC2EWK4OOIkY50RYIAzNo_TDAiT8KXBdzIHR96j_wl5vOmyEHAaKLMidwcyPt_n3rEl2RT2rQawrLylwJeO5Q=w1215-h911-s-no-gm",
 "Nh4AY-hlpRHrCCxnjookeYkGQllt7sCq8D75FsKAviZOp1R30UJtpkc41mBdIid6YSkEt-boddKfBTzw5JpOmFTfBgNUqKwASVhJk08lpdRxG2Bm1UDp02a-iBJD8vV2hA0NLrYHNJDx9lv7mMNQ=w1215-h911-s-no-gm"
 ].map(dq);
-
 const BAN={
  tapas:dq("PthoYVPdU0TlaLTGjNjxFdCSZJG47xkzSUXS0rRJ3SyaHW0MpMduDMcEFu0bdEKVwVYHmjVvaTL2iBK_25RqurO4xvpEXw68Oj9T2uHZfBtyqY1qB_IHR_alapHb9jCg2L3Ulsk9m5laHwMoKN7Q=w1365-h772-s-no-gm"),
  desayuno:dq("NVdbZlJtFblgJOjTrT4SoQ1eILoHmUzEPrQedo8_dnDl_WxQgggTwBzgLtgYgRk8vM0NeQCuRK-UoHuk_t6s0HljAszLJHQpW51wK3UiBTfdfiWpA2ujyGXIU31SQZicBbbUjlO_5ewBXrqInFYg=w1228-h694-s-no-gm"),
@@ -344,123 +336,124 @@ const BAN={
  refrescos:dq("NQU2qNObynEpRHeSq2i3mx4YhmtsAmHgw3lS7n-j8Ibn7ILFaJ8MwlGXuNVM5n-bXbY7nf1yu8JV0sLdE8FzMt2QmoqIfzlUDbRbiOLiOfcSVkpBF_j9gCCeaC1XrHpw3-wh1DmKR7cTaI0duPHA=w1365-h762-s-no-gm"),
  cafes:dq("M2c01NWtrw7lkWSTGvisbwP_1kAMh4AzIQv9nFAS5W1_Y0Mfm4MXED7Ww0e_nUj-s1ydzZTheyKdE2zFhBga_-FoHVraq5PXa95DZnlQ295uUW-RrjS_7ew_bLMR-PhI_S2fKNyf3zt7BuFtYGkw=w1365-h762-s-no-gm")
 };
-
 const MENU={
- tapas:{nav:{es:"Tapas",en:"Tapas"},title:{es:"Tapas",en:"Tapas"},banner:BAN.tapas,deco:[DECO[0],DECO[1]],
-   note:{main:{es:"Todas las tapas a 1,60€",en:"All tapas at €1.60"},sub:{es:"Nuestros camareros pasan con una bandeja ofreciéndolas",en:"Our waiters circulate with a tray of tapas"}},
+ tapas:{nav:{es:"Tapas",en:"Tapas",fr:"Tapas"},title:{es:"Tapas",en:"Tapas",fr:"Tapas"},banner:BAN.tapas,deco:[DECO[0],DECO[1]],
+   note:{main:{es:"Todas las tapas a 1,60€",en:"All tapas at €1.60",fr:"Toutes les tapas à 1,60€"},sub:{es:"Nuestros camareros pasan con una bandeja ofreciéndolas",en:"Our waiters circulate with a tray of tapas",fr:"Nos serveurs passent avec un plateau pour vous les proposer"}},
    groups:[
-    {t:{es:"Calientes · Clásicos",en:"Hot · Classics"},items:[
-      {id:"tp1",es:"Croquetas (jamón, pollo, bacalao)",en:"Croquettes (ham, chicken, cod)",p:1.6},
-      {id:"tp2",es:"Calamares",en:"Calamari",p:1.6},
-      {id:"tp3",es:"Gambas",en:"Shrimps",p:1.6},
-      {id:"tp4",es:"Patatas bravas",en:"Patatas bravas",p:1.6},
-      {id:"tp5",es:"Salchicha",en:"Sausage",p:1.6},
-      {id:"tp6",es:"Alitas de pollo",en:"Chicken wings",p:1.6}]},
-    {t:{es:"Calientes · Otros",en:"Hot · More"},items:[
-      {id:"tp7",es:"Croquetas de cangrejo",en:"Crab croquettes",p:1.6},
-      {id:"tp8",es:"Pollo a la plancha",en:"Grilled chicken",p:1.6},
-      {id:"tp9",es:"Pincho de ternera",en:"Beef skewer",p:1.6},
-      {id:"tp10",es:"Arroz caldoso",en:"Brothy rice",p:1.6}]},
-    {t:{es:"Frías",en:"Cold"},items:[
-      {id:"tp11",es:"Ensalada rusa",en:"Russian salad",p:1.6},
-      {id:"tp12",es:"Tortilla de patatas",en:"Spanish omelette",p:1.6},
-      {id:"tp13",es:"Jamón serrano",en:"Serrano ham",p:1.6},
-      {id:"tp14",es:"Ensalada de cangrejo",en:"Crab salad",p:1.6},
-      {id:"tp15",es:"Queso con mermelada",en:"Cheese with jam",p:1.6}]}]},
+    {t:{es:"Calientes · Clásicos",en:"Hot · Classics",fr:"Chaudes · Classiques"},items:[
+      {id:"tp1",es:"Croquetas (jamón, pollo, bacalao)",en:"Croquettes (ham, chicken, cod)",fr:"Croquettes (jambon, poulet, morue)",p:1.6},
+      {id:"tp2",es:"Calamares",en:"Calamari",fr:"Calamars",p:1.6},
+      {id:"tp3",es:"Gambas",en:"Shrimps",fr:"Gambas",p:1.6},
+      {id:"tp4",es:"Patatas bravas",en:"Patatas bravas",fr:"Patatas bravas",p:1.6},
+      {id:"tp5",es:"Salchicha",en:"Sausage",fr:"Saucisse",p:1.6},
+      {id:"tp6",es:"Alitas de pollo",en:"Chicken wings",fr:"Ailes de poulet",p:1.6}]},
+    {t:{es:"Calientes · Otros",en:"Hot · More",fr:"Chaudes · Autres"},items:[
+      {id:"tp7",es:"Croquetas de cangrejo",en:"Crab croquettes",fr:"Croquettes de crabe",p:1.6},
+      {id:"tp8",es:"Pollo a la plancha",en:"Grilled chicken",fr:"Poulet grillé",p:1.6},
+      {id:"tp9",es:"Pincho de ternera",en:"Beef skewer",fr:"Brochette de bœuf",p:1.6},
+      {id:"tp10",es:"Arroz caldoso",en:"Brothy rice",fr:"Riz mijoté",p:1.6}]},
+    {t:{es:"Frías",en:"Cold",fr:"Froides"},items:[
+      {id:"tp11",es:"Ensalada rusa",en:"Russian salad",fr:"Salade russe",p:1.6},
+      {id:"tp12",es:"Tortilla de patatas",en:"Spanish omelette",fr:"Tortilla de pommes de terre",p:1.6},
+      {id:"tp13",es:"Jamón serrano",en:"Serrano ham",fr:"Jambon serrano",p:1.6},
+      {id:"tp14",es:"Ensalada de cangrejo",en:"Crab salad",fr:"Salade de crabe",p:1.6},
+      {id:"tp15",es:"Queso con mermelada",en:"Cheese with jam",fr:"Fromage à la confiture",p:1.6}]}]},
 
- desayuno:{nav:{es:"Desayuno",en:"Breakfast"},title:{es:"Desayuno & Tostadas",en:"Breakfast & Toasts"},banner:BAN.desayuno,deco:[DECO[2],DECO[3]],
+ desayuno:{nav:{es:"Desayuno",en:"Breakfast",fr:"Petit-déj"},title:{es:"Desayuno & Tostadas",en:"Breakfast & Toasts",fr:"Petit-déjeuner & Tartines"},banner:BAN.desayuno,deco:[DECO[2],DECO[3]],
    items:[
-     {id:"dy1",es:"Desayuno clásico",en:"Classic breakfast",p:3.0,d:{es:"Café con leche + zumo de naranja + media tostada (aceite, tomate o mantequilla)",en:"Coffee with milk + orange juice + half toast (oil, tomato or butter)"}},
-     {id:"dy2",es:"Media tostada de tomate con atún",en:"Half toast, tomato & tuna",p:3.0},
-     {id:"dy3",es:"Media tostada de tomate y aceite",en:"Half toast, tomato & oil",p:2.0},
-     {id:"dy4",es:"Media tostada de aceite",en:"Half toast with oil",p:1.5},
-     {id:"dy5",es:"Media tostada de jamón serrano / York",en:"Half toast, serrano / York ham",p:2.5},
-     {id:"dy6",es:"Media tostada de queso",en:"Half toast with cheese",p:2.0},
-     {id:"dy7",es:"Media tostada de mantequilla y mermelada",en:"Half toast, butter & jam",p:1.5}]},
+     {id:"dy1",es:"Desayuno clásico",en:"Classic breakfast",fr:"Petit-déjeuner classique",p:3.0,d:{es:"Café con leche + zumo de naranja + media tostada (aceite, tomate o mantequilla)",en:"Coffee with milk + orange juice + half toast (oil, tomato or butter)",fr:"Café au lait + jus d'orange + demi-tartine (huile, tomate ou beurre)"}},
+     {id:"dy2",es:"Media tostada de tomate con atún",en:"Half toast, tomato & tuna",fr:"Demi-tartine tomate & thon",p:3.0},
+     {id:"dy3",es:"Media tostada de tomate y aceite",en:"Half toast, tomato & oil",fr:"Demi-tartine tomate & huile",p:2.0},
+     {id:"dy4",es:"Media tostada de aceite",en:"Half toast with oil",fr:"Demi-tartine à l'huile",p:1.5},
+     {id:"dy5",es:"Media tostada de jamón serrano / York",en:"Half toast, serrano / York ham",fr:"Demi-tartine jambon serrano / blanc",p:2.5},
+     {id:"dy6",es:"Media tostada de queso",en:"Half toast with cheese",fr:"Demi-tartine au fromage",p:2.0},
+     {id:"dy7",es:"Media tostada de mantequilla y mermelada",en:"Half toast, butter & jam",fr:"Demi-tartine beurre & confiture",p:1.5}]},
 
- cervezas:{nav:{es:"Cervezas",en:"Beers"},title:{es:"Cervezas",en:"Beers"},banner:BAN.cervezas,deco:[DECO[4],DECO[5]],
+ cervezas:{nav:{es:"Cervezas",en:"Beers",fr:"Bières"},title:{es:"Cervezas",en:"Beers",fr:"Bières"},banner:BAN.cervezas,deco:[DECO[4],DECO[5]],
    items:[
-     {id:"cv1",es:"Caña pequeña (con o sin alcohol)",en:"Small draft (with/without alcohol)",p:1.0},
-     {id:"cv2",es:"Caña copa 20cl",en:"Draft glass 20cl",p:2.0},
-     {id:"cv3",es:"Quinto de Mahou",en:"Mahou (20cl)",p:2.5},
-     {id:"cv4",es:"Tercio de Heineken",en:"Heineken (33cl)",p:3.2},
-     {id:"cv5",es:"Tercio de Mahou",en:"Mahou (33cl)",p:3.2},
-     {id:"cv6",es:"Pinta 50cl",en:"Pint 50cl",p:4.5}]},
+     {id:"cv1",es:"Caña pequeña (con o sin alcohol)",en:"Small draft (with/without alcohol)",fr:"Petit demi (avec ou sans alcool)",p:1.0},
+     {id:"cv2",es:"Caña copa 20cl",en:"Draft glass 20cl",fr:"Demi 20cl",p:2.0},
+     {id:"cv3",es:"Quinto de Mahou",en:"Mahou (20cl)",fr:"Mahou (20cl)",p:2.5},
+     {id:"cv4",es:"Tercio de Heineken",en:"Heineken (33cl)",fr:"Heineken (33cl)",p:3.2},
+     {id:"cv5",es:"Tercio de Mahou",en:"Mahou (33cl)",fr:"Mahou (33cl)",p:3.2},
+     {id:"cv6",es:"Pinta 50cl",en:"Pint 50cl",fr:"Pinte 50cl",p:4.5}]},
 
- cocteles:{nav:{es:"Cócteles",en:"Cocktails"},title:{es:"Cócteles & Sangría",en:"Cocktails & Sangría"},banner:BAN.cocteles,deco:[DECO[6],DECO[7]],
+ cocteles:{nav:{es:"Cócteles",en:"Cocktails",fr:"Cocktails"},title:{es:"Cócteles & Sangría",en:"Cocktails & Sangría",fr:"Cocktails & Sangria"},banner:BAN.cocteles,deco:[DECO[6],DECO[7]],
    items:[
-     {id:"co1",es:"Tinto de verano",en:"Tinto de verano",p:3.5},
-     {id:"co2",es:"Sangría",en:"Sangría",p:5.0},
-     {id:"co3",es:"Piña colada",en:"Piña colada",p:5.0},
-     {id:"co4",es:"Mojito",en:"Mojito",p:7.0},
-     {id:"co5",es:"Sex on the beach",en:"Sex on the beach",p:8.0},
-     {id:"co6",es:"Aperol Spritz",en:"Aperol Spritz",p:8.0},
-     {id:"co7",es:"Jarra de sangría",en:"Sangría jug",p:25.0}]},
+     {id:"co1",es:"Tinto de verano",en:"Tinto de verano",fr:"Tinto de verano",p:3.5},
+     {id:"co2",es:"Sangría",en:"Sangría",fr:"Sangria",p:5.0},
+     {id:"co3",es:"Piña colada",en:"Piña colada",fr:"Piña colada",p:5.0},
+     {id:"co4",es:"Mojito",en:"Mojito",fr:"Mojito",p:7.0},
+     {id:"co5",es:"Sex on the beach",en:"Sex on the beach",fr:"Sex on the beach",p:8.0},
+     {id:"co6",es:"Aperol Spritz",en:"Aperol Spritz",fr:"Aperol Spritz",p:8.0},
+     {id:"co7",es:"Jarra de sangría",en:"Sangría jug",fr:"Pichet de sangria",p:25.0}]},
 
- vinos:{nav:{es:"Vinos",en:"Wines"},title:{es:"Vinos",en:"Wines"},banner:BAN.vinos,deco:[DECO[8],DECO[9]],
+ vinos:{nav:{es:"Vinos",en:"Wines",fr:"Vins"},title:{es:"Vinos",en:"Wines",fr:"Vins"},banner:BAN.vinos,deco:[DECO[8],DECO[9]],
    items:[
-     {id:"vi1",es:"Copa de vino",en:"Glass of wine",p:3.2,d:{es:"Tinto (Rioja, Ribera del Duero) · Blanco (Verdejo seco / afrutado) · Rosado (Torrecilla)",en:"Red (Rioja, Ribera del Duero) · White (dry/fruity Verdejo) · Rosé (Torrecilla)"}},
-     {id:"vi2",es:"Cava Codorníu",en:"Codorníu cava",p:7.0},
-     {id:"vi3",es:"Botella de vino",en:"Bottle of wine",p:20.0}]},
+     {id:"vi1",es:"Copa de vino",en:"Glass of wine",fr:"Verre de vin",p:3.2,d:{es:"Tinto (Rioja, Ribera del Duero) · Blanco (Verdejo seco / afrutado) · Rosado (Torrecilla)",en:"Red (Rioja, Ribera del Duero) · White (dry/fruity Verdejo) · Rosé (Torrecilla)",fr:"Rouge (Rioja, Ribera del Duero) · Blanc (Verdejo sec / fruité) · Rosé (Torrecilla)"}},
+     {id:"vi2",es:"Cava Codorníu",en:"Codorníu cava",fr:"Cava Codorníu",p:7.0},
+     {id:"vi3",es:"Botella de vino",en:"Bottle of wine",fr:"Bouteille de vin",p:20.0}]},
 
- whisky:{nav:{es:"Whisky",en:"Whisky"},title:{es:"Whisky",en:"Whisky"},banner:BAN.whisky,deco:[DECO[10]],
+ whisky:{nav:{es:"Whisky",en:"Whisky",fr:"Whisky"},title:{es:"Whisky",en:"Whisky",fr:"Whisky"},banner:BAN.whisky,deco:[DECO[10]],
    items:[
-     {id:"wh1",es:"Johnnie Walker (Red)",en:"Johnnie Walker (Red)",p:7.0},
-     {id:"wh2",es:"Johnnie Walker Black",en:"Johnnie Walker Black",p:10.0},
-     {id:"wh3",es:"Jack Daniel's",en:"Jack Daniel's",p:8.0},
-     {id:"wh4",es:"Ballantine's",en:"Ballantine's",p:7.0},
-     {id:"wh5",es:"Jameson",en:"Jameson",p:7.0},
-     {id:"wh6",es:"J&B",en:"J&B",p:7.0},
-     {id:"wh7",es:"Chivas Regal",en:"Chivas Regal",p:10.0}]},
+     {id:"wh1",es:"Johnnie Walker (Red)",en:"Johnnie Walker (Red)",fr:"Johnnie Walker (Red)",p:7.0},
+     {id:"wh2",es:"Johnnie Walker Black",en:"Johnnie Walker Black",fr:"Johnnie Walker Black",p:10.0},
+     {id:"wh3",es:"Jack Daniel's",en:"Jack Daniel's",fr:"Jack Daniel's",p:8.0},
+     {id:"wh4",es:"Ballantine's",en:"Ballantine's",fr:"Ballantine's",p:7.0},
+     {id:"wh5",es:"Jameson",en:"Jameson",fr:"Jameson",p:7.0},
+     {id:"wh6",es:"J&B",en:"J&B",fr:"J&B",p:7.0},
+     {id:"wh7",es:"Chivas Regal",en:"Chivas Regal",fr:"Chivas Regal",p:10.0}]},
 
- refrescos:{nav:{es:"Refrescos",en:"Soft drinks"},title:{es:"Refrescos & Zumos",en:"Soft drinks & Juices"},banner:BAN.refrescos,deco:[DECO[11]],
+ refrescos:{nav:{es:"Refrescos",en:"Soft drinks",fr:"Sodas"},title:{es:"Refrescos & Zumos",en:"Soft drinks & Juices",fr:"Sodas & Jus"},banner:BAN.refrescos,deco:[DECO[11]],
    items:[
-     {id:"rf1",es:"Agua",en:"Water",p:1.0},
-     {id:"rf2",es:"Agua con gas",en:"Sparkling water",p:2.5},
-     {id:"rf3",es:"Coca-Cola",en:"Coca-Cola",p:2.0},
-     {id:"rf4",es:"Coca-Cola Zero",en:"Coca-Cola Zero",p:2.0},
-     {id:"rf5",es:"Fanta limón",en:"Fanta lemon",p:2.0},
-     {id:"rf6",es:"Fanta naranja",en:"Fanta orange",p:2.0},
-     {id:"rf7",es:"Aquarius limón",en:"Aquarius lemon",p:2.3},
-     {id:"rf8",es:"Aquarius naranja",en:"Aquarius orange",p:2.3},
-     {id:"rf9",es:"Nestea",en:"Nestea",p:2.0},
-     {id:"rf10",es:"Bitter Kas",en:"Bitter Kas",p:2.0},
-     {id:"rf11",es:"Schweppes",en:"Schweppes",p:2.3},
-     {id:"rf12",es:"Zumo",en:"Juice",p:3.2,d:{es:"Naranja, piña, melocotón, tomate, manzana",en:"Orange, pineapple, peach, tomato, apple"}}]},
+     {id:"rf1",es:"Agua",en:"Water",fr:"Eau",p:1.0},
+     {id:"rf2",es:"Agua con gas",en:"Sparkling water",fr:"Eau gazeuse",p:2.5},
+     {id:"rf3",es:"Coca-Cola",en:"Coca-Cola",fr:"Coca-Cola",p:2.0},
+     {id:"rf4",es:"Coca-Cola Zero",en:"Coca-Cola Zero",fr:"Coca-Cola Zero",p:2.0},
+     {id:"rf5",es:"Fanta limón",en:"Fanta lemon",fr:"Fanta citron",p:2.0},
+     {id:"rf6",es:"Fanta naranja",en:"Fanta orange",fr:"Fanta orange",p:2.0},
+     {id:"rf7",es:"Aquarius limón",en:"Aquarius lemon",fr:"Aquarius citron",p:2.3},
+     {id:"rf8",es:"Aquarius naranja",en:"Aquarius orange",fr:"Aquarius orange",p:2.3},
+     {id:"rf9",es:"Nestea",en:"Nestea",fr:"Nestea",p:2.0},
+     {id:"rf10",es:"Bitter Kas",en:"Bitter Kas",fr:"Bitter Kas",p:2.0},
+     {id:"rf11",es:"Schweppes",en:"Schweppes",fr:"Schweppes",p:2.3},
+     {id:"rf12",es:"Zumo",en:"Juice",fr:"Jus",p:3.2,d:{es:"Naranja, piña, melocotón, tomate, manzana",en:"Orange, pineapple, peach, tomato, apple",fr:"Orange, ananas, pêche, tomate, pomme"}}]},
 
- cafes:{nav:{es:"Cafés & Té",en:"Coffee & Tea"},title:{es:"Cafés, Té & Otros",en:"Coffee, Tea & More"},banner:BAN.cafes,deco:[DECO[12],DECO[13]],
+ cafes:{nav:{es:"Cafés & Té",en:"Coffee & Tea",fr:"Cafés & Thé"},title:{es:"Cafés, Té & Otros",en:"Coffee, Tea & More",fr:"Cafés, Thé & Plus"},banner:BAN.cafes,deco:[DECO[12],DECO[13]],
    groups:[
-    {t:{es:"Cafés",en:"Coffee"},items:[
-      {id:"cf1",es:"Café solo",en:"Espresso",p:1.3},
-      {id:"cf2",es:"Café americano",en:"Americano",p:1.5},
-      {id:"cf3",es:"Café cortado",en:"Cortado",p:1.5},
-      {id:"cf4",es:"Café con leche",en:"Coffee with milk",p:1.8},
-      {id:"cf5",es:"Cappuccino",en:"Cappuccino",p:2.0},
-      {id:"cf6",es:"Café vienés",en:"Viennese coffee",p:2.0},
-      {id:"cf7",es:"Café irlandés",en:"Irish coffee",p:1.5},
-      {id:"cf8",es:"Descafeinado",en:"Decaf",p:1.3}]},
-    {t:{es:"Té & Otros",en:"Tea & More"},items:[
-      {id:"te1",es:"Té (menta, negro, verde, rojo)",en:"Tea (mint, black, green, red)",p:1.3},
-      {id:"te2",es:"Manzanilla",en:"Chamomile",p:1.3},
-      {id:"te3",es:"Chocolate caliente",en:"Hot chocolate",p:1.8},
-      {id:"te4",es:"Cola Cao",en:"Cola Cao",p:2.0}]}]}
+    {t:{es:"Cafés",en:"Coffee",fr:"Cafés"},items:[
+      {id:"cf1",es:"Café solo",en:"Espresso",fr:"Expresso",p:1.3},
+      {id:"cf2",es:"Café americano",en:"Americano",fr:"Américain",p:1.5},
+      {id:"cf3",es:"Café cortado",en:"Cortado",fr:"Noisette",p:1.5},
+      {id:"cf4",es:"Café con leche",en:"Coffee with milk",fr:"Café au lait",p:1.8},
+      {id:"cf5",es:"Cappuccino",en:"Cappuccino",fr:"Cappuccino",p:2.0},
+      {id:"cf6",es:"Café vienés",en:"Viennese coffee",fr:"Café viennois",p:2.0},
+      {id:"cf7",es:"Café irlandés",en:"Irish coffee",fr:"Irish coffee",p:1.5},
+      {id:"cf8",es:"Descafeinado",en:"Decaf",fr:"Décaféiné",p:1.3}]},
+    {t:{es:"Té & Otros",en:"Tea & More",fr:"Thé & Plus"},items:[
+      {id:"te1",es:"Té (menta, negro, verde, rojo)",en:"Tea (mint, black, green, red)",fr:"Thé (menthe, noir, vert, rouge)",p:1.3},
+      {id:"te2",es:"Manzanilla",en:"Chamomile",fr:"Camomille",p:1.3},
+      {id:"te3",es:"Chocolate caliente",en:"Hot chocolate",fr:"Chocolat chaud",p:1.8},
+      {id:"te4",es:"Cola Cao",en:"Cola Cao",fr:"Cola Cao",p:2.0}]}]}
 };
 
 const T={
- add:{es:"Añadir",en:"Add"},added:{es:"Añadido ✓",en:"Added ✓"},removed:{es:"Eliminado",en:"Removed"},
- cleared:{es:"Carrito vaciado",en:"Cart cleared"},
- yourOrder:{es:"Tu pedido",en:"Your order"},total:{es:"Total",en:"Total"},
- sendWA:{es:"Enviar por WhatsApp",en:"Send via WhatsApp"},copy:{es:"Copiar pedido",en:"Copy order"},
- copied:{es:"Pedido copiado ✓",en:"Order copied ✓"},
- emptyCart:{es:"Tu carrito está vacío",en:"Your cart is empty"},emptyMsg:{es:"El carrito está vacío",en:"Cart is empty"},
- clearAll:{es:"Vaciar",en:"Clear all"},
- modeView:{es:"En sala",en:"Dine-in"},modeOrder:{es:"Pedir / Llevar",en:"Order / Takeaway"},
- review:{es:"Déjanos tu reseña en Google",en:"Leave us a Google review"},
- visit:{es:"Ven a vernos",en:"Come visit us"},address:{es:"Dirección",en:"Address"},phone:{es:"Teléfono",en:"Phone"},
- hours:{es:"Horario",en:"Opening hours"},hoursVal:{es:"Lun, Mié–Dom: 9:30–00:00 · Mar: cerrado",en:"Mon, Wed–Sun: 9:30–00:00 · Tue: closed"},
- footnote:{es:"Carta digital · Precios en euros, IVA incluido.",en:"Digital menu · Prices in euros, VAT included."},
- orderNo:{es:"Nº de pedido",en:"Order no."}
+ add:{es:"Añadir",en:"Add",fr:"Ajouter"},added:{es:"Añadido ✓",en:"Added ✓",fr:"Ajouté ✓"},removed:{es:"Eliminado",en:"Removed",fr:"Retiré"},
+ remove:{es:"Quitar",en:"Remove",fr:"Retirer"},cleared:{es:"Carrito vaciado",en:"Cart cleared",fr:"Panier vidé"},
+ yourOrder:{es:"Tu pedido",en:"Your order",fr:"Votre commande"},total:{es:"Total",en:"Total",fr:"Total"},
+ sendWA:{es:"Enviar por WhatsApp",en:"Send via WhatsApp",fr:"Envoyer via WhatsApp"},copy:{es:"Copiar pedido",en:"Copy order",fr:"Copier la commande"},
+ copied:{es:"Pedido copiado ✓",en:"Order copied ✓",fr:"Commande copiée ✓"},
+ emptyCart:{es:"Tu carrito está vacío",en:"Your cart is empty",fr:"Votre panier est vide"},emptyMsg:{es:"El carrito está vacío",en:"Cart is empty",fr:"Le panier est vide"},
+ clearAll:{es:"Vaciar",en:"Clear all",fr:"Vider"},
+ modeView:{es:"En sala",en:"Dine-in",fr:"Sur place"},modeOrder:{es:"Pedir / Llevar",en:"Order / Takeaway",fr:"Commander / À emporter"},
+ review:{es:"Déjanos tu reseña en Google",en:"Leave us a Google review",fr:"Laissez-nous un avis sur Google"},
+ visit:{es:"Ven a vernos",en:"Come visit us",fr:"Venez nous voir"},address:{es:"Dirección",en:"Address",fr:"Adresse"},phone:{es:"Teléfono",en:"Phone",fr:"Téléphone"},
+ hours:{es:"Horario",en:"Opening hours",fr:"Horaires"},hoursVal:{es:"Lun, Mié–Dom: 9:30–00:00 · Mar: cerrado",en:"Mon, Wed–Sun: 9:30–00:00 · Tue: closed",fr:"Lun, Mer–Dim : 9h30–00h00 · Mar : fermé"},
+ footnote:{es:"Carta digital · Precios en euros, IVA incluido.",en:"Digital menu · Prices in euros, VAT included.",fr:"Carte digitale · Prix en euros, TVA incluse."},
+ orderNo:{es:"Nº de pedido",en:"Order no.",fr:"N° de commande"},
+ waFooter:{es:"📍 Mesa / Para llevar:\n📝 Notas:",en:"📍 Table / Takeaway:\n📝 Notes:",fr:"📍 Table / À emporter :\n📝 Notes :"}
 };
+const LOC={es:"es-ES",en:"en-GB",fr:"fr-FR"};
 
 let LANG="es", MODE="view", currentCat=ORDER[0];
 const t=k=>T[k][LANG];
@@ -471,11 +464,9 @@ let cart=[]; const IDX={};
 ORDER.forEach(k=>{const c=MENU[k];(c.items||[]).concat(...(c.groups||[]).map(g=>g.items)).forEach(it=>IDX[it.id]={...it,cat:k});});
 let orderNo=genOrder();
 
-/* ---- persistence (1h) ---- */
 function save(){try{localStorage.setItem("tym",JSON.stringify({cart,orderNo,LANG,MODE,ts:Date.now()}))}catch(e){}}
 function load(){try{const r=JSON.parse(localStorage.getItem("tym"));if(r&&Date.now()-r.ts<3600000){cart=r.cart||[];orderNo=r.orderNo||orderNo;if(r.LANG)LANG=r.LANG;if(r.MODE)MODE=r.MODE;}}catch(e){}}
 
-/* ---- render ---- */
 function cardHTML(it){
   const d=it.d?'<p class="desc">'+it.d[LANG]+'</p>':"";
   const ctrl=MODE==="order"?'<div class="card-actions"><div class="stepper" data-id="'+it.id+'"><button class="step minus">−</button><span class="qty">1</span><button class="step plus">+</button></div><button class="add" data-id="'+it.id+'">'+ADDSVG+t("add")+'</button></div>':"";
@@ -497,9 +488,7 @@ function listHTML(c){
   }
   return MINIRUBAN+gridOnly(c.items)+deco.map(decoStrip).join("");
 }
-function buildNav(){
-  navRow.innerHTML=ORDER.map(k=>'<button class="tab'+(k===currentCat?" on":"")+'" data-target="'+k+'">'+MENU[k].nav[LANG]+'</button>').join("");
-}
+function buildNav(){navRow.innerHTML=ORDER.map(k=>'<button class="tab'+(k===currentCat?" on":"")+'" data-target="'+k+'">'+MENU[k].nav[LANG]+'</button>').join("");}
 function buildSections(){
   sections.innerHTML=ORDER.map(k=>{
     const c=MENU[k];
@@ -512,11 +501,9 @@ function buildSections(){
 function applyI18n(){document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=t(e.dataset.i18n));document.documentElement.lang=LANG;}
 function render(){document.body.classList.toggle("mode-order",MODE==="order");buildNav();buildSections();applyI18n();updateFab();}
 
-/* ---- lang / mode ---- */
 document.querySelectorAll(".langbtn").forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;document.querySelectorAll(".langbtn").forEach(x=>x.classList.toggle("on",x===b));render();renderCart();save();});
 document.querySelectorAll(".modebtn").forEach(b=>b.onclick=()=>{MODE=b.dataset.mode;document.querySelectorAll(".modebtn").forEach(x=>x.classList.toggle("on",x===b));render();save();});
 
-/* ---- nav: tabs / arrows / swipe / idle ---- */
 navRow.addEventListener("click",e=>{const b=e.target.closest(".tab");if(b)showCat(b.dataset.target,true);});
 const navPrev=document.getElementById("navPrev"),navNext=document.getElementById("navNext");
 navPrev.onclick=()=>gotoCat(-1);navNext.onclick=()=>gotoCat(1);
@@ -536,7 +523,6 @@ let tsx=0,tsy=0;
 sections.addEventListener("touchstart",e=>{tsx=e.changedTouches[0].clientX;tsy=e.changedTouches[0].clientY;},{passive:true});
 sections.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-tsx,dy=e.changedTouches[0].clientY-tsy;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4){gotoCat(dx<0?1:-1);}},{passive:true});
 
-/* ---- steppers / add / deco zoom ---- */
 sections.addEventListener("click",e=>{
   const z=e.target.closest("[data-zoom]");if(z){openLB(z.getAttribute("data-zoom"));return;}
   const s=e.target.closest(".step");
@@ -545,12 +531,10 @@ sections.addEventListener("click",e=>{
   if(a){const id=a.dataset.id,box=a.closest(".card").querySelector(".stepper"),q=+box.querySelector(".qty").textContent;addToCart(id,q);box.querySelector(".qty").textContent="1";pulse();toast(t("added"));}
 });
 
-/* ---- lightbox ---- */
 const lightbox=document.getElementById("lightbox"),lbImg=document.getElementById("lbImg");
 function openLB(src){lbImg.src=src;lbImg.classList.remove("zoomed");lightbox.classList.add("on");}
 function closeLB(){lightbox.classList.remove("on");}
 
-/* ---- cart ---- */
 function addToCart(id,q){const ex=cart.find(c=>c.id===id);if(ex)ex.q+=q;else cart.push({id,q});updateFab();save();}
 function toggleCart(){overlay.classList.toggle("on");if(overlay.classList.contains("on"))renderCart();}
 function updateFab(){fabCount.textContent=cart.reduce((s,c)=>s+c.q,0);fabTotal.textContent=eur(cart.reduce((s,c)=>s+IDX[c.id].p*c.q,0));}
@@ -559,26 +543,24 @@ function renderCart(){
     cartTotal.textContent="0,00€";ordMeta.textContent="";updateFab();return;}
   let tot=0,html='<div class="cart-bar"><button class="clear-all" onclick="clearCart()"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>'+t("clearAll")+'</button></div>';
   cart.forEach(c=>{const it=IDX[c.id],line=it.p*c.q;tot+=line;
-    html+='<div class="citem"><div class="citem-top"><span class="citem-name">'+it[LANG]+'</span><span class="citem-line">'+eur(line)+'</span></div><div class="citem-ctrl"><button class="rm" onclick="rmItem(\''+c.id+'\')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>'+(LANG==="es"?"Quitar":"Remove")+'</button><div class="stepper"><button class="step" onclick="chg(\''+c.id+'\',-1)">−</button><span class="qty">'+c.q+'</span><button class="step" onclick="chg(\''+c.id+'\',1)">+</button></div></div></div>';});
+    html+='<div class="citem"><div class="citem-top"><span class="citem-name">'+it[LANG]+'</span><span class="citem-line">'+eur(line)+'</span></div><div class="citem-ctrl"><button class="rm" onclick="rmItem(\''+c.id+'\')"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>'+t("remove")+'</button><div class="stepper"><button class="step" onclick="chg(\''+c.id+'\',-1)">−</button><span class="qty">'+c.q+'</span><button class="step" onclick="chg(\''+c.id+'\',1)">+</button></div></div></div>';});
   cartItems.innerHTML=html;cartTotal.textContent=eur(tot);
-  ordMeta.textContent=t("orderNo")+": "+orderNo+" · "+new Date().toLocaleDateString(LANG==="es"?"es-ES":"en-GB");
+  ordMeta.textContent=t("orderNo")+": "+orderNo+" · "+new Date().toLocaleDateString(LOC[LANG]);
   updateFab();
 }
 function rmItem(id){cart=cart.filter(c=>c.id!==id);toast(t("removed"));save();renderCart();}
 function chg(id,d){const c=cart.find(x=>x.id===id);if(!c)return;c.q+=d;if(c.q<=0)cart=cart.filter(x=>x.id!==id);save();renderCart();}
 function clearCart(){cart=[];save();renderCart();toast(t("cleared"));}
 
-/* ---- whatsapp / copy ---- */
 function buildMsg(){
-  let m="*TAPAS Y MÁS · ALICANTE*\n"+t("orderNo")+": "+orderNo+"\n"+new Date().toLocaleDateString(LANG==="es"?"es-ES":"en-GB")+" "+new Date().toLocaleTimeString(LANG==="es"?"es-ES":"en-GB",{hour:"2-digit",minute:"2-digit"})+"\n————————————\n",tot=0;
+  let m="*TAPAS Y MÁS · ALICANTE*\n"+t("orderNo")+": "+orderNo+"\n"+new Date().toLocaleDateString(LOC[LANG])+" "+new Date().toLocaleTimeString(LOC[LANG],{hour:"2-digit",minute:"2-digit"})+"\n————————————\n",tot=0;
   ORDER.forEach(k=>{const inCat=cart.filter(c=>IDX[c.id].cat===k);if(!inCat.length)return;m+="\n*"+MENU[k].title[LANG]+"*\n";inCat.forEach(c=>{const it=IDX[c.id],line=it.p*c.q;tot+=line;m+="• "+it[LANG]+" x"+c.q+" — "+eur(line)+"\n";});});
-  m+="————————————\n*"+t("total").toUpperCase()+": "+eur(tot)+"*\n————————————\n\n"+(LANG==="es"?"📍 Mesa / Para llevar:\n📝 Notas:":"📍 Table / Takeaway:\n📝 Notes:");
+  m+="————————————\n*"+t("total").toUpperCase()+": "+eur(tot)+"*\n————————————\n\n"+t("waFooter");
   return m;
 }
 function sendWA(){if(!cart.length){toast(t("emptyMsg"));return;}window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(buildMsg()),"_blank");}
 function copyOrder(){if(!cart.length){toast(t("emptyMsg"));return;}navigator.clipboard.writeText(buildMsg()).then(()=>toast(t("copied"))).catch(()=>toast("Error"));}
 
-/* ---- helpers ---- */
 function genOrder(){const d=new Date();return "TM-"+(""+d.getFullYear()).slice(-2)+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();}
 function pulse(){fab.classList.add("pulse");setTimeout(()=>fab.classList.remove("pulse"),420);}
 let toastT;function toast(m){const el=document.getElementById("toast");el.textContent=m;el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),2200);}
@@ -590,7 +572,6 @@ function observeCards(){
   document.querySelectorAll(".cat.on [data-rev]").forEach(c=>io.observe(c));
 }
 
-/* ---- init ---- */
 load();
 document.querySelectorAll(".langbtn").forEach(x=>x.classList.toggle("on",x.dataset.lang===LANG));
 document.querySelectorAll(".modebtn").forEach(x=>x.classList.toggle("on",x.dataset.mode===MODE));
